@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/AdamKvant/MathWhiz/issues"
   },
-  "homepage": "https://github.com/AdamKvant/MathWhiz#readme"
+  "homepage": "https://github.com/AdamKvant/MathWhiz#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
 }

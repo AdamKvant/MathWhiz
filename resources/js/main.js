@@ -1,3 +1,5 @@
+let timerStarted = false;
+
 function getRandomInt(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -81,6 +83,10 @@ function submitButtonListener(){
     const submitButton = document.getElementById("submit");
         submitButton.addEventListener("click", (formEvent) => {
             formEvent.preventDefault();
+            if(!timerStarted){
+                setInterval(decrementTimer,1000);
+                timerStarted = true;
+            }
             sendPOST(solution);
         },{once : true}); 
 }
@@ -90,6 +96,36 @@ function numBoxListener(){
     numBoxDoc.addEventListener("keydown",(event) => {
         limitInput(numBoxDoc, 5);
     });
+}
+
+function decrementTimer(){
+    const timerDoc = document.getElementById("timer");
+    let timeSec = timerDoc.innerText.split(":");
+    if (timeSec.length > 1){
+        timeSec[0] = parseInt(timeSec[0]);
+        timeSec[1] = parseInt(timeSec[1]);
+        timeSec = 60 * timeSec[0] + timeSec[1];
+    }
+    else{
+        timeSec[0] = parseInt(timeSec[0]);
+        timeSec = timeSec[0];
+    }
+    if (timeSec > 0){
+        timeSec--;
+    }
+
+    let timeMin = Math.floor(timeSec / 60);
+    timeSec = timeSec % 60;
+    let timeStr = "";
+
+    if (timeMin > 0){
+        timeStr = timeMin + ":" + timeSec;
+    }
+    else{
+            timeStr = timeSec + ""; 
+    }
+
+    timerDoc.innerText = timeStr;
 }
 
 window.addEventListener("load",submitButtonListener);

@@ -5,7 +5,7 @@
 /* Body styling */
 body {
     display: flex;
-    height: 98vh;
+    height: 97.5vh;
     justify-content: center;
     align-items: center;
     font-family: 'Roboto', sans-serif;
@@ -78,4 +78,9 @@ input[type=number] {
 
 input:focus, select:focus, textarea:focus, button:focus {
     outline: none;
+}
+
+/* Timer CSS */
+#timerDiv {
+    font-size: .5em;
 }

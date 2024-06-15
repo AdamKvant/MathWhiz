@@ -6,7 +6,7 @@ function getRandomInt(min, max) {
 
 
 function editNumbers(){
-    const operators = ["+","-","x","/"];
+    const operators = ["+","-","*","/"];
 
     let solution = 0;
 
@@ -32,7 +32,7 @@ function editNumbers(){
         case "-":
             solution = num1 - num2;
             break;
-        case "x":
+        case "*":
             solution = num1 * num2;
             break;
         case "/":

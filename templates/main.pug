@@ -7,17 +7,18 @@ html(lang='en')
         title MathWhiz
 
     body
-        div(id="numsAndOp")
-            | &nbsp; &nbsp;
-            span(id="num1") 0
-            br
-            span(id="operator") +
-            | &nbsp;
-            span(id="num2") 0
-        div(id="form")
-            form()
-                input(type="number" name="userInput" id="userInput" placeholder="answer")
-                input(type="submit" value="Submit" id="submit" style="display : none;")
-        div(id="scoreDiv")
-            span Score: 
-                span(id="score") 0
+        div(id="bodyContainer")
+            div(id="numsAndOp")
+                | &nbsp; &nbsp;
+                span(id="num1") 0
+                br
+                span(id="operator") +
+                | &nbsp;
+                span(id="num2") 0
+            div(id="form")
+                form()
+                    input(type="number" name="userInput" id="userInput" placeholder="answer")
+                    input(type="submit" value="Submit" id="submit" style="display : none;")
+            div(id="scoreDiv")
+                span Score: 
+                    span(id="score") 0

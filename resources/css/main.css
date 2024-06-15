@@ -12,6 +12,11 @@ body {
     display: flex;
     height: 100vh;
     justify-content: center;
-    align-items: center;
-    
+    align-items: center;  
+}
+
+#bodyContainer {
+    display: flex;
+    flex-direction: column;
+    vertical-align: top;
 }

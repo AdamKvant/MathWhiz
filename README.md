@@ -3,6 +3,8 @@ MathWhiz is fast-paced (soon to be timed) math testing platform. It is designed 
 
 Right now MathWhiz is not timed, and currently will go on forever. I will add these features in a later update.
 
+You can run MathWhiz by typing `node .\server.js` into the CLI. The site can be accessed at `http://localhost:5678/`.
+
 MathWhiz was created using the `Express.js` framework.
 
 ## Changelog

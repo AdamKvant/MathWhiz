@@ -51,5 +51,5 @@ app.use((req,res,next)=>{
     res.status(404).render("404.pug");
 })
 app.listen(port , () => {
-  console.log(`Example app listening on port ${port}`)
+  console.log(`MathWhiz listening on port ${port}`)
 })

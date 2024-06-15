@@ -2,9 +2,17 @@ doctype html
 html(lang='en')
     head
         meta(charset='UTF-8')
+        script(src="/js/main.js")
         title MathWhiz
 
     body
-        form(action="/submit" method="POST")
+        div(id="numsAndOp")
+            include space
+            span(id="num1") 0
+            br
+            span(id="operator") +
+            include space
+            span(id="num2") 0
+        form()
             input(type="number" name="userInput" id="userInput" placeholder="answer")
-            input(type="submit" value="Submit" style="display:none;")
+            input(type="submit" value="Submit" id="submit" style="display:none;")

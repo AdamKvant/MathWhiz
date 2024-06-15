@@ -32,7 +32,7 @@ function editNumbers(){
 
     if (operator === "/"){
         while(num2 === 0){
-            let num2 = getRandomInt(0, 12);
+            num2 = getRandomInt(0, 12);
         }
     }
 
@@ -77,8 +77,8 @@ async function sendPOST(solution){
 }
 
 function submitButtonListener(){
-    const submitButton = document.getElementById("submit");
     let solution = editNumbers();
+    const submitButton = document.getElementById("submit");
         submitButton.addEventListener("click", (formEvent) => {
             formEvent.preventDefault();
             sendPOST(solution);

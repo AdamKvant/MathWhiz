@@ -47,9 +47,10 @@ function submitButtonListener(){
 
     const submitButton = document.getElementById("submit");
 
-    
+
 
 
 }
 
 window.addEventListener("load",submitButtonListener);
+window.addEventListener("load",editNumbers);

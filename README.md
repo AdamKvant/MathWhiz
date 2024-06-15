@@ -1,7 +1,7 @@
 # MathWhiz
-MathWhiz is fast-paced (soon to be timed) math testing platform. It is designed to emulate the timed math tests that many students (grades 1-4) have to take at school.
+MathWhiz is fast-paced math testing platform. It is designed to emulate the timed math tests that many students (grades 1-4) have to take at school.
 
-Right now MathWhiz is not timed, and currently will go on forever. I will add these features in a later update.
+Right now MathWhiz is timed, but currently will go on forever. I will add these features in a later update.
 
 You can run MathWhiz by typing `node .\server.js` into the CLI. The site can be accessed at `http://localhost:5678/`.
 

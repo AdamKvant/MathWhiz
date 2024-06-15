@@ -11,6 +11,7 @@ app.use("/js", express.static("resources/js", { type: "text/javascript" }));
 //app.use("/images", express.static("resources/images", { type: "image/png" }));
 
 let inputs = [];
+let score = 0;
 
 app.get("/", (req , res) => {
     res.setHeader("Content-Type","text/html");
@@ -22,23 +23,22 @@ app.get("/main", (req , res) => {
     res.status(200).render("main.pug");
 })
 
-app.post("/submit",(req,res) =>{
-    res.setHeader("Content-Type","text/html");
+app.post("/api/submit",(req,res) =>{
+    res.setHeader("Content-Type","application/json");
     console.log(req.body);
     let body = req.body;
     if (Object.keys(body).length == 0){
         res.status(400).render("fail.pug");
     }
     else{
-        if (body["userInput"] != undefined && typeof parseFloat(body["userInput"]) === 'number'){
-            inputs.push(parseFloat(body["userInput"]));
+        if (body["userInput"] != undefined && typeof body["userInput"] === 'boolean'){
+            inputs.push(body["userInput"]);
             console.log(inputs);
-            res.status(201).render("success.pug");
+            if (body["userInput"] === true){
+                score++;
+            }
+            res.status(200).send({"score" : score});
         }
-        else{
-            res.status(400).render("fail.pug");
-        }
-
     }
 });
 

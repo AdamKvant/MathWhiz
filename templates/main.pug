@@ -13,6 +13,10 @@ html(lang='en')
             span(id="operator") +
             include space
             span(id="num2") 0
-        form()
-            input(type="number" name="userInput" id="userInput" placeholder="answer")
-            input(type="submit" value="Submit" id="submit" style="display:none;")
+        div(id="form")
+            form()
+                input(type="number" name="userInput" id="userInput" placeholder="answer")
+                input(type="submit" value="Submit" id="submit" style="display : none;")
+        div(id="scoreDiv")
+            span Score: 
+                span(id="score") 0

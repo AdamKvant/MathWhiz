@@ -42,15 +42,37 @@ function editNumbers(){
     return solution;
 }
 
+async function sendPOST(solution){
+    const userInput = document.getElementById("userInput");
+    let userNum = parseFloat(userInput.value);
+    let inputJSON = null;
+    if (userNum === solution){
+        inputJSON = {"userInput" : true};
+    }
+    else{
+        inputJSON = {"userInput" : false};
+    }
+    inputJSON = JSON.stringify(inputJSON);
+    const response = await fetch("/api/submit", {method:"POST", headers:{"Content-Type" : "application/json"}, body: inputJSON});
 
-function submitButtonListener(){
-
-    const submitButton = document.getElementById("submit");
-
-
-
-
+    if (response.ok){
+        const json = await response.json();
+        const score = json.score;
+        const scoreDoc = document.getElementById("score");
+        scoreDoc.innerText = score;
+    }
+    userInput.value = "";
+    submitButtonListener();
 }
 
+function submitButtonListener(){
+    const submitButton = document.getElementById("submit");
+    let solution = editNumbers();
+        submitButton.addEventListener("click", (formEvent) => {
+            formEvent.preventDefault();
+            sendPOST(solution);
+        },{once : true}); 
+}
+
+
 window.addEventListener("load",submitButtonListener);
-window.addEventListener("load",editNumbers);

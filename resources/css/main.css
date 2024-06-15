@@ -84,3 +84,22 @@ input:focus, select:focus, textarea:focus, button:focus {
 #timerDiv {
     font-size: .5em;
 }
+
+
+/* General styling for footer */
+#footer {
+    background-color: #1e1e1e;
+    font-size: .1em;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    padding-top: 1vh;
+    width: 100%;
+    padding-bottom: 1vh;
+}
+
+/* Originally used for footer text, no longer there */
+#footer p {
+    margin-top: 1em;
+    padding: 0;
+}

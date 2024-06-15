@@ -3,15 +3,16 @@ html(lang='en')
     head
         meta(charset='UTF-8')
         script(src="/js/main.js")
+        link(rel="stylesheet", type="text/css", href="/css/main.css", id="pageCSS")
         title MathWhiz
 
     body
         div(id="numsAndOp")
-            include space
+            | &nbsp; &nbsp;
             span(id="num1") 0
             br
             span(id="operator") +
-            include space
+            | &nbsp;
             span(id="num2") 0
         div(id="form")
             form()

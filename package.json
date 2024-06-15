@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/AdamKvant/MathWhiz#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "pug": "^3.0.3"
   }
 }

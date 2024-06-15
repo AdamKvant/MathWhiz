@@ -1,0 +1,10 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='UTF-8')
+        title MathWhiz
+
+    body
+        form(action="/submit" method="POST")
+            input(type="number" name="userInput" id="userInput" placeholder="answer")
+            input(type="submit" value="Submit" style="display:none;")

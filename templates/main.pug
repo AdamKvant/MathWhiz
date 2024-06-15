@@ -5,20 +5,22 @@ html(lang='en')
         script(src="/js/main.js")
         link(rel="stylesheet", type="text/css", href="/css/main.css", id="pageCSS")
         title MathWhiz
-
     body
+        div(id="headerContainer")
+            div(id="headerTitle")
+                h1 MathWhiz
+            div(id="scoreDiv")
+                h1 Score: 
+                    span(id="score") #{score}
         div(id="bodyContainer")
             div(id="numsAndOp")
                 | &nbsp; &nbsp;
                 span(id="num1") 0
                 br
                 span(id="operator") +
-                | &nbsp;
+                | &nbsp; &nbsp;
                 span(id="num2") 0
             div(id="form")
                 form()
-                    input(type="number" name="userInput" id="userInput" placeholder="answer")
+                    input(type="number" name="userInput" id="userInput" placeholder="ans" maxlength="5")
                     input(type="submit" value="Submit" id="submit" style="display : none;")
-            div(id="scoreDiv")
-                span Score: 
-                    span(id="score") 0

@@ -15,13 +15,9 @@ let score = 0;
 
 app.get("/", (req , res) => {
     res.setHeader("Content-Type","text/html");
-    res.status(200).render("main.pug");
+    res.status(200).render("main.pug",{score: score});
 })
 
-app.get("/main", (req , res) => {
-    res.setHeader("Content-Type","text/html");
-    res.status(200).render("main.pug");
-})
 
 app.post("/api/submit",(req,res) =>{
     res.setHeader("Content-Type","application/json");

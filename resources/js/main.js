@@ -4,6 +4,11 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
+  function limitInput(inputElement, maxLength) {
+    if (inputElement.value.length > maxLength) {
+        inputElement.value = inputElement.value.slice(0, maxLength);
+    }
+}
 
 function editNumbers(){
     const operators = ["+","-","*","/"];
@@ -24,6 +29,12 @@ function editNumbers(){
     num1Doc.innerText = num1;
     num2Doc.innerText = num2;
     operatorDoc.innerText = operator;
+
+    if (operator === "/"){
+        while(num2 === 0){
+            let num2 = getRandomInt(0, 12);
+        }
+    }
 
     switch(operator){
         case "+":
@@ -74,5 +85,13 @@ function submitButtonListener(){
         },{once : true}); 
 }
 
+function numBoxListener(){
+    const numBoxDoc = document.getElementById("userInput");
+    numBoxDoc.addEventListener("keydown",(event) => {
+        limitInput(numBoxDoc, 5);
+    });
+}
 
 window.addEventListener("load",submitButtonListener);
+
+window.addEventListener("load",numBoxListener)

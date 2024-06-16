@@ -35,16 +35,17 @@ function editNumbers(){
     let num1 = getRandomInt(0, 12);
     let num2 = getRandomInt(0, 12);
 
-    num1Doc.innerText = num1;
-    num2Doc.innerText = num2;
-    operatorDoc.innerText = operator;
-
     // CASE: Divide by zero covered.
     if (operator === "/"){
         while(num2 === 0){
             num2 = getRandomInt(0, 12);
         }
     }
+
+    num1Doc.innerText = num1;
+    num2Doc.innerText = num2;
+    operatorDoc.innerText = operator;
+
 
     // Perform the operation and generate solution.
     switch(operator){
@@ -87,10 +88,27 @@ function getTimer(){
     return timeSec;
 }
 
+function isGameOver(){
+    if (getTimer() === 0){
+        const timerDoc = document.getElementById("timer");
+        timerDoc.innerText = "Time's up!";
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 // Sends a POST request with the user's answer.
 // Verifies that the time in the timer is correct.
 // Updates the score accordingly.
 async function sendPOST(solution){
+    if (timerTracker === null || timerTracker > 0){
+    
+    if (isGameOver()){
+        return;
+    }
+
     const userInput = document.getElementById("userInput");
     let userNum = parseFloat(userInput.value);
     let inputJSON = null;
@@ -100,7 +118,7 @@ async function sendPOST(solution){
     const currentTime = getTimer();
 
     // Shrink the timerTracker by a second.
-    if( timerTracker != false && timerTracker >= currentTime){
+    if( timerTracker != false && timerTracker >= currentTime && currentTime > 0){
         correctTimeBool = true;
         timerTracker = currentTime;
     }
@@ -125,7 +143,7 @@ async function sendPOST(solution){
         if (correctTimeBool && timerTracker != false){
             scoreDoc.innerText = score;
         }
-        else{
+        else if (!correctTimeBool && timerTracker === false && currentTime > 0){
             scoreDoc.innerText = "Altered timer caught."
             timerTracker = false;
         }
@@ -134,6 +152,7 @@ async function sendPOST(solution){
     //Clears input box, and creates a new submitButtonListener with a new question.
     userInput.value = "";
     submitButtonListener();
+    }
 }
 
 // Generates a new question and solution.
@@ -165,6 +184,9 @@ function numBoxListener(){
 // Decrements the timer by one second.
 function decrementTimer(){
     const timerDoc = document.getElementById("timer");
+    if (timerDoc.innerText === "Time's up!"){
+        return;
+    }
     let timeSec = timerDoc.innerText.split(":");
     if (timeSec.length > 1){
         timeSec[0] = parseInt(timeSec[0]);
@@ -175,8 +197,12 @@ function decrementTimer(){
         timeSec[0] = parseInt(timeSec[0]);
         timeSec = timeSec[0];
     }
-    if (timeSec > 0){
+    if (timeSec > 1){
         timeSec--;
+    }
+    else{
+        timerDoc.innerText = "Time's up!";
+        return
     }
 
     let timeMin = Math.floor(timeSec / 60);

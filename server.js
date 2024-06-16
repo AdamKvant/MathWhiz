@@ -24,6 +24,8 @@ let timeAltered = false;
 
 // GET request for main page.
 app.get("/", (req , res) => {
+    timeAltered = false;
+    inputs = [];
     score = 0;
     res.setHeader("Content-Type","text/html");
     res.status(200).render("main.pug",{score: score});

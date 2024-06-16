@@ -12,8 +12,9 @@ MathWhiz was created using the `Express.js` framework.
 
 * `1.0.1` - Game now has a timer (doesn't stop the player yet), subtracts from score for skipped questions, and has some critical bugs fixed.
 
+* `1.0.2` - Game now has a timer that stops the player, divide-by-zero fixed.
+
 ## MathWhiz TODO list
-- add time limit
 - number range selections
 - sessions (high scores)
 - hashing for answers(anticheat)

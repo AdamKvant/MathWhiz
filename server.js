@@ -1,44 +1,55 @@
+// Express.js setup
 const express = require("express");
 const app = express();
 const port = 5678;
 app.set("views","templates");
 app.set("view engine","pug");
+
+// Middleware
 app.use(express.urlencoded({extended : true}));
 app.use(express.json());
-
 app.use("/css", express.static("resources/css", { type: "text/css" }));
 app.use("/js", express.static("resources/js", { type: "text/javascript" }));
+// Might use images at some point?
 //app.use("/images", express.static("resources/images", { type: "image/png" }));
 
+// List of booleans representing correctness of player answers.
 let inputs = [];
+
+// Player score
 let score = 0;
+
+// Boolean that checks if the timer has been altered or not.
 let timeAltered = false;
 
+// GET request for main page.
 app.get("/", (req , res) => {
     res.setHeader("Content-Type","text/html");
     res.status(200).render("main.pug",{score: score});
 })
 
-
+// POST request for user answer.s
 app.post("/api/submit",(req,res) =>{
     res.setHeader("Content-Type","application/json");
-    console.log(req.body);
     let body = req.body;
     if (Object.keys(body).length == 0){
         res.status(400).render("fail.pug");
     }
     else{
-        console.log(body["userInput"], body["correctTime"]);
+        // CASE: Check if JSON is correct.
         if (body["userInput"] != undefined && typeof body["userInput"] === 'boolean'
             && body["correctTime"] != undefined && typeof body["correctTime"] === 'boolean'
         ){
+            // Push new answer bool onto the inputs list.
             inputs.push(body["userInput"]);
             console.log(inputs);
 
+            // CASE: If time was altered, update timeAltered.
             if (body["correctTime"] === false){
                 timeAltered = true;
             }
 
+            // CASE: If the user answer was correct, return true.
             if (body["userInput"] === true){
                 score++;
             }

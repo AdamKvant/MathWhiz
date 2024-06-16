@@ -1,4 +1,5 @@
 let timerStarted = false;
+let timerTracker = null;
 
 function getRandomInt(min, max) {
     min = Math.ceil(min);
@@ -55,15 +56,44 @@ function editNumbers(){
     return solution;
 }
 
+function getTimer(){
+    const timerDoc = document.getElementById("timer");
+    let timeSec = timerDoc.innerText.split(":");
+    if (timeSec.length > 1){
+        timeSec[0] = parseInt(timeSec[0]);
+        timeSec[1] = parseInt(timeSec[1]);
+        timeSec = 60 * timeSec[0] + timeSec[1];
+    }
+    else{
+        timeSec[0] = parseInt(timeSec[0]);
+        timeSec = timeSec[0];
+    }
+    
+    if (timerTracker === null){
+        timerTracker = timeSec;
+    }
+    return timeSec;
+}
+
 async function sendPOST(solution){
     const userInput = document.getElementById("userInput");
     let userNum = parseFloat(userInput.value);
     let inputJSON = null;
+
+    let correctTimeBool = false;
+
+    const currentTime = getTimer();
+
+    if( timerTracker != false && timerTracker >= currentTime){
+        correctTimeBool = true;
+    }
+    
+
     if (userNum === solution){
-        inputJSON = {"userInput" : true};
+        inputJSON = {"userInput" : true, "correctTime" : correctTimeBool};
     }
     else{
-        inputJSON = {"userInput" : false};
+        inputJSON = {"userInput" : false, "correctTime" : correctTimeBool};
     }
     inputJSON = JSON.stringify(inputJSON);
     const response = await fetch("/api/submit", {method:"POST", headers:{"Content-Type" : "application/json"}, body: inputJSON});
@@ -72,7 +102,14 @@ async function sendPOST(solution){
         const json = await response.json();
         const score = json.score;
         const scoreDoc = document.getElementById("score");
-        scoreDoc.innerText = score;
+        if (correctTimeBool && timerTracker != false){
+            scoreDoc.innerText = score;
+        }
+        else{
+            scoreDoc.innerText = "Altered timer caught"
+            timerTracker = false;
+        }
+        
     }
     userInput.value = "";
     submitButtonListener();

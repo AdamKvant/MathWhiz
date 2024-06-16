@@ -12,6 +12,7 @@ app.use("/js", express.static("resources/js", { type: "text/javascript" }));
 
 let inputs = [];
 let score = 0;
+let timeAltered = false;
 
 app.get("/", (req , res) => {
     res.setHeader("Content-Type","text/html");
@@ -27,13 +28,26 @@ app.post("/api/submit",(req,res) =>{
         res.status(400).render("fail.pug");
     }
     else{
-        if (body["userInput"] != undefined && typeof body["userInput"] === 'boolean'){
+        console.log(body["userInput"], body["correctTime"]);
+        if (body["userInput"] != undefined && typeof body["userInput"] === 'boolean'
+            && body["correctTime"] != undefined && typeof body["correctTime"] === 'boolean'
+        ){
             inputs.push(body["userInput"]);
             console.log(inputs);
+
+            if (body["correctTime"] === false){
+                timeAltered = true;
+            }
+
             if (body["userInput"] === true){
                 score++;
             }
+            
             res.status(200).send({"score" : score});
+        }
+        else{
+            res.setHeader("Content-Type","text/html");
+            res.status(404).render("404.pug");
         }
     }
 });

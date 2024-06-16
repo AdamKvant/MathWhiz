@@ -35,6 +35,11 @@ body {
     padding-left: 2em;
 }
 
+.headerLink {
+    color: white;
+    text-decoration: none;
+}
+
 #scoreDiv {
     position: absolute;
     top: 0;

@@ -36,8 +36,20 @@ app.post("/api/submit",(req,res) =>{
         res.status(400).render("fail.pug");
     }
     else{
+        
+        // CASE: User skips the question (enters nothing).
+        // Subtract 1 from their score.
+        console.log(body["userInput"],body["correctTime"])
+        if (body["userInput"] === null && body["correctTime"] != undefined 
+            && typeof body["correctTime"] === 'boolean'){
+            score--;
+            inputs.push(body["userInput"]);
+            res.status(200).send({"score" : score});
+        }
+
+
         // CASE: Check if JSON is correct.
-        if (body["userInput"] != undefined && typeof body["userInput"] === 'boolean'
+        else if (body["userInput"] != undefined && typeof body["userInput"] === 'boolean'
             && body["correctTime"] != undefined && typeof body["correctTime"] === 'boolean'
         ){
             // Push new answer bool onto the inputs list.

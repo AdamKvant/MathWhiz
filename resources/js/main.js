@@ -105,8 +105,11 @@ async function sendPOST(solution){
         timerTracker = currentTime;
     }
     
-
-    if (userNum === solution){
+    console.log(userNum);
+    if (isNaN(userNum)){
+        inputJSON = {"userInput" : null, "correctTime" : correctTimeBool};
+    }
+    else if (userNum === solution){
         inputJSON = {"userInput" : true, "correctTime" : correctTimeBool};
     }
     else{

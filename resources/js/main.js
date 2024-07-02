@@ -11,7 +11,7 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 
-  // Limits the input size to maxlength characters. I use 5 in the current iteration.
+  // Limits the input size to maxlength characters. I use 4 in the current iteration.
   function limitInput(inputElement, maxLength) {
     if (inputElement.value.length > maxLength) {
         inputElement.value = inputElement.value.slice(0, maxLength);
@@ -177,7 +177,7 @@ function submitButtonListener(){
 function numBoxListener(){
     const numBoxDoc = document.getElementById("userInput");
     numBoxDoc.addEventListener("keydown",(event) => {
-        limitInput(numBoxDoc, 5);
+        limitInput(numBoxDoc, 4);
     });
 }
 
